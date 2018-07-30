@@ -1,0 +1,96 @@
+<%include header.html %>
+
+    <li>
+        <a href="/">首页</a>
+    </li>
+    <li>
+        <a href="/article">博文</a>
+    </li>
+    <li class="active">留言板</li>
+    </ol>
+    </div>
+    </div>
+    <!--end of row-->
+    </div>
+    <!--end of container-->
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mb-xs-24">
+                    <!-- 留言板 -->
+                    <div class="content">
+                        <% for(var i=(msgs.length-1); i>=0; i--){ %>
+                            <div class="msg">
+                                <h3><%= msgs[i].content %></h3>
+                                <p>发表于<a href=""><%= msgs[i].date.toLocaleString() %></a> 由 <a href=""><%= msgs[i].author %></a></p>
+                                <!-- <p><%= msgs[i].content %> -->
+                                </p>
+                            </div>
+                            <hr>
+                        <% } %>
+
+                        <div class="msg_form">
+                            <h2>发表留言</h2>
+                            <form action="/mess/publish" method="post">
+                                <ul>
+                                    <li>
+                                        <label for="">内容：</label>
+                                    </li>
+                                    <li>
+                                        <!-- <input type="text" name="title" class="txt"/> -->
+                                        <textarea name="content" id="" class="txt" cols="70" rows="5" style="resize:none" ></textarea>
+                                    </li>
+                                    <li>
+                                        <label for="">昵称：</label>
+                                    </li>
+                                    <li>
+                                        <input type="text" name="author" class="txt" />
+                                    </li>
+                                    <!-- <li>
+                                        <label for="">内容：</label>
+                                    </li>
+                                    <li>
+                                        <textarea name="content" id="" cols="70" rows="5"></textarea>
+                                    </li> -->
+                                    <li>
+                                        <input type="submit" value="提 交" class="btn" style="width:50px;font-size:15px;" />
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end of nine col-->
+                <div class="col-md-3 hidden-sm">
+                    <div class="widget">
+                        <h6 class="title">作者</h6>
+                        <hr>
+                        <p>
+                            大杯可乐加冰！
+                        </p>
+                    </div>
+                    
+                    <div class="widget">
+                        <h6 class="title">最新留言</h6>
+                        <hr>
+                        <ul class="link-list recent-comments">
+                            <% for(var i=msgs.length-1; i>=(msgs.length-5>0?msgs.length-5:0); i--){ %>
+                            <li>
+                                <a href=""><%= msgs[i].content %></a><br>
+                                <span class="date">September 23, 2015</span>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <!--end of widget-->
+                </div>
+                <!--end of sidebar-->
+            </div>
+            <!--end of container row-->
+        </div>
+        <!--end of container-->
+    </section>
+
+    <%include footer.html %>

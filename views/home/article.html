@@ -1,0 +1,140 @@
+<%include header.html %>
+
+    <li>
+        <a href="/">首页</a>
+    </li>
+    <li class="active">博文</li>
+    <li>
+        <a href="/mess">留言板</a>
+    </li>
+    </ol>
+    </div>
+    </div>
+    <!--end of row-->
+    </div>
+    <!--end of container-->
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 mb-xs-24">
+                    <div class="post-snippet mb64">
+                        <img class="mb24" alt="Post Image" src="/avatar/<%= data.cover %>" />
+                        <div class="post-title">
+                            <span class="label">
+                                <%= data.date.toDateString() %>
+                            </span>
+                            <h4 class="inline-block">
+                                <%= data.subject %>
+                            </h4>
+                        </div>
+                        <ul class="post-meta">
+                            <li>
+                                <i class="ti-user"></i>
+                                <span>作者
+                                    <a href="#">圣</a>
+                                </span>
+                            </li>
+                            <li>
+                                <i class="ti-tag"></i>
+                                <span>标签
+                                    <a href="#">PHP</a>
+                                    <a href="#">互联网</a>
+                                    <a href="#">PHP7</a>
+                                </span>
+                            </li>
+                        </ul>
+                        <hr>
+                        <!-- 内容 -->
+                        <div id="content">
+                            <%= data.content %>
+                        </div>
+                        <script type="text/javascript">
+                            var con = document.getElementById("content");
+                            console.log('<%= data.content %>');
+                            var str = con.innerText;
+                            console.log(str);
+                            con.innerHTML = str;
+                        </script>
+                    </div>
+                    <!--end of post snippet-->
+
+                </div>
+                <!--end of nine col-->
+                <div class="col-md-3 hidden-sm">
+                    <div class="widget">
+                        <h6 class="title">搜索</h6>
+                        <hr>
+                        <form>
+                            <input class="mb0" type="text" placeholder="关键词" />
+                        </form>
+                    </div>
+                    <!--end of widget-->
+                    <div class="widget">
+                        <h6 class="title">作者</h6>
+                        <hr>
+                        <p>
+                            大杯可乐加冰！
+                        </p>
+                    </div>
+                    <!--end of widget-->
+                    <div class="widget">
+                        <h6 class="title">分类</h6>
+                        <hr>
+                        <ul class="link-list">
+                            <% data1.forEach(function(item, index){ %>
+                                <li>
+                                    <a href="#">
+                                        <%= item.title %>
+                                    </a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                    <!--end of widget-->
+                    <div class="widget">
+                        <h6 class="title">最新博文</h6>
+                        <hr>
+                        <ul class="link-list recent-posts">
+                            <!-- <% data2.forEach(function(item, index){ %>
+                                <li>
+                                    <a href="/article?id=<%= item._id %>">
+                                        <%= item.subject %>
+                                    </a>
+                                    <span class="date">
+                                        <%= item.date.toDateString() %>
+                                    </span>
+                                </li>
+                            <% }) %> -->
+                            <% for(var i = data2.length-1 ; i >=(data2.length-4>0?data2.length-4:0) ; i--){ %>
+                                <li>
+                                    <a href="/article?id=<%= data2[i]._id %>">
+                                        <%= data2[i].subject %>
+                                    </a>
+                                    <span class="date">
+                                        <%= data2[i].date.toDateString() %>
+                                    </span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <!--end of widget-->
+                    <div class="widget">
+                        <h6 class="title">最新留言</h6>
+                        <hr>
+                        <ul class="link-list recent-comments">
+                            <li>
+                                <a href="/mess">查看留言</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of widget-->
+                </div>
+                <!--end of sidebar-->
+            </div>
+            <!--end of container row-->
+        </div>
+        <!--end of container-->
+    </section>
+
+    <%include footer.html %>
